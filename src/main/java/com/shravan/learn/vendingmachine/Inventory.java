@@ -1,0 +1,32 @@
+package com.shravan.learn.vendingmachine;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class Inventory {
+    private final Map<Product, Integer> products;
+
+    public Inventory() {
+        this.products = new HashMap<>();
+    }
+
+    public void add(Product product, int quantity) {
+        products.put(product, quantity);
+    }
+
+    public void remove(Product product) {
+        products.remove(product);
+    }
+
+    public void update(Product product, int quantity) {
+        products.put(product, quantity);
+    }
+
+    public int getQuantity(Product product) {
+        return products.getOrDefault(product, 0);
+    }
+
+    public boolean isAvailable(Product product) {
+        return products.containsKey(product) && products.get(product) > 0;
+    }
+}
