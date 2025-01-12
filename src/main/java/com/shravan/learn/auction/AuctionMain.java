@@ -5,7 +5,7 @@ import java.util.TimerTask;
 
 // AuctionSystem -> Users, Listings, user Notifications
 //                  searchListing, createListing(Listing) [startAuctionTimer],
-//                  bid(Listing, User, price), notify(Bidders)
+//                  placeBid(Listing, Bid), notify(Bidders)
 
 // User -> name, email, pwd
 // Notification -> recipient User, content, NotificationType, timestamp
