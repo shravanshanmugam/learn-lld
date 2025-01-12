@@ -18,6 +18,6 @@ public class CurrencyConverter {
     public static BigDecimal convert(BigDecimal amount, Currency source, Currency target) {
         BigDecimal sourceRate = exchangeRates.get(source);
         BigDecimal targetRate = exchangeRates.get(target);
-        return amount.multiply(sourceRate).divide(targetRate, RoundingMode.HALF_UP);
+        return amount.multiply(targetRate).divide(sourceRate, RoundingMode.HALF_UP);
     }
 }
