@@ -1,4 +1,4 @@
-package com.shravan.learn.hotelmanagementsystem;
+package com.shravan.learn.hotelmanagement;
 
 import java.time.LocalDate;
 import java.util.*;

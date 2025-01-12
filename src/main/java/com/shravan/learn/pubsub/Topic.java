@@ -1,4 +1,4 @@
-package com.shravan.learn.pubsubsystem;
+package com.shravan.learn.pubsub;
 
 import java.util.HashSet;
 import java.util.Set;

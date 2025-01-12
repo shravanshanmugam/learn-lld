@@ -1,4 +1,4 @@
-package com.shravan.learn.hotelmanagementsystem;
+package com.shravan.learn.hotelmanagement;
 
 public enum RoomType {
     SINGLE(100), DOUBLE(200), DELUXE(250), SUITE(400);

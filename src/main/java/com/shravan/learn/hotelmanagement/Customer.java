@@ -1,4 +1,4 @@
-package com.shravan.learn.hotelmanagementsystem;
+package com.shravan.learn.hotelmanagement;
 
 public class Customer {
     private final String name;

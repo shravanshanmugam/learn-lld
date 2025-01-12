@@ -1,4 +1,4 @@
-package com.shravan.learn.carrentalsystem;
+package com.shravan.learn.carrental;
 
 import java.time.LocalDate;
 import java.util.List;

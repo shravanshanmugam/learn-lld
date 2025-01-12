@@ -1,4 +1,4 @@
-package com.shravan.learn.carrentalsystem;
+package com.shravan.learn.carrental;
 
 public class User {
     private final String name;

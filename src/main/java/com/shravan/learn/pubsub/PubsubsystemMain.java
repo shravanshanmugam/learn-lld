@@ -1,4 +1,4 @@
-package com.shravan.learn.pubsubsystem;
+package com.shravan.learn.pubsub;
 
 // Topic -> name, Subscribers -> name
 // Publisher -> name, Topics

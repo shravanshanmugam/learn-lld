@@ -1,4 +1,4 @@
-package com.shravan.learn.pubsubsystem;
+package com.shravan.learn.pubsub;
 
 public class Message {
     private final String content;

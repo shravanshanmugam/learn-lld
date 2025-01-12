@@ -1,4 +1,4 @@
-package com.shravan.learn.hotelmanagementsystem;
+package com.shravan.learn.hotelmanagement;
 
 
 // HMS -> Hotel, Reservation -> Room, Customer, checkIn Date checkout Date, status

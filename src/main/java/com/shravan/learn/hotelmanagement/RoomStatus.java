@@ -1,4 +1,4 @@
-package com.shravan.learn.hotelmanagementsystem;
+package com.shravan.learn.hotelmanagement;
 
 public enum RoomStatus {
     AVAILABLE, OCCUPIED
