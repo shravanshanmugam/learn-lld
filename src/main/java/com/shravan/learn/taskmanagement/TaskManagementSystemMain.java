@@ -1,4 +1,4 @@
-package com.shravan.learn.taskmanagementsystem;
+package com.shravan.learn.taskmanagement;
 
 
 // TaskManager -> Tasks, UserTasks

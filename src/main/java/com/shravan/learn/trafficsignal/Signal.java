@@ -1,4 +1,4 @@
-package com.shravan.learn.trafficsignalsystem;
+package com.shravan.learn.trafficsignal;
 
 public enum Signal {
     RED, YELLOW, GREEN

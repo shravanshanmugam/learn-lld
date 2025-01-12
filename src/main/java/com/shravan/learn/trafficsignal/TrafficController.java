@@ -1,4 +1,4 @@
-package com.shravan.learn.trafficsignalsystem;
+package com.shravan.learn.trafficsignal;
 
 import java.util.*;
 

@@ -1,4 +1,4 @@
-package com.shravan.learn.trafficsignalsystem;
+package com.shravan.learn.trafficsignal;
 
 // TrafficController -> Roads + queue -> Traffic Light -> current signal, yellow duration, green duration
 public class TrafficSignalSystemMain {
