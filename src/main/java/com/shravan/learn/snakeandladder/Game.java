@@ -17,7 +17,7 @@ public class Game {
         q.addAll(players);
         while (q.size() > 1) {
             Player current = q.poll();
-            int roll = current.roll(dice);
+            int roll = dice.roll();
             System.out.println(current.getName() + " at " + current.getPosition() + " rolls " + roll);
             int newPosition = current.getPosition() + roll;
             if (newPosition > 100) {

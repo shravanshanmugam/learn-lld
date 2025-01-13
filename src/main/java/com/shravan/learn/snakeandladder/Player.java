@@ -11,8 +11,4 @@ public class Player {
     @Setter
     private int position = 1;
 
-    public int roll(Dice dice) {
-        return dice.roll();
-    }
-
 }

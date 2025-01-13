@@ -28,6 +28,7 @@ public class SnakeAndLadderMain {
         List<Player> players = new ArrayList<>();
         players.add(new Player("alice"));
         players.add(new Player("bob"));
+        players.add(new Player("charlie"));
         Dice dice = new Dice(1);
         Game game = new Game(board, players, dice);
         game.play();
