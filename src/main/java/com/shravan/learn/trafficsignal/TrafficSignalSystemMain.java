@@ -1,6 +1,9 @@
 package com.shravan.learn.trafficsignal;
 
-// TrafficController -> Roads + queue -> Traffic Light -> current signal, yellow duration, green duration
+// TrafficController -> map Roads, Deque TrafficLight
+// Road -> name, TrafficLight,
+// TrafficLight -> current Signal, yellowDuration, greenDuration
+// Signal -> RED, YELLOW, GREEN
 public class TrafficSignalSystemMain {
 
     public static void main(String[] args) throws InterruptedException {

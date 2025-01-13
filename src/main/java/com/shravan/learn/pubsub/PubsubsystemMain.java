@@ -1,7 +1,9 @@
 package com.shravan.learn.pubsub;
 
-// Topic -> name, Subscribers -> name
-// Publisher -> name, Topics
+// Topic -> name, set Subscribers
+// Subscriber -> name, onMessage(Message)
+// Publisher -> name, set Topics
+// Message -> content
 public class PubsubsystemMain {
     public static void main(String[] args) {
 // Create topics

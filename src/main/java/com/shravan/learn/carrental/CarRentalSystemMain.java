@@ -3,9 +3,14 @@ package com.shravan.learn.carrental;
 import java.time.LocalDate;
 import java.util.List;
 
-// CarBookingSystem -> Cars, CarBookings
+// CarBookingSystem -> map Cars, map CarBookings
+// isAvailable(Car, startDate, endDate)
+// reserve(Customer, Car, startDate, endDate)
+// cancel(reservationId)
+
 // Car - make, model, licensePlate, price
-// CarBooking - car, user, startDate, endDate, totalPrice
+// CarBooking - Car, Customer, startDate (LocalDate), endDate (LocalDate), totalPrice
+// Customer -> name, phone, licenseNumber
 public class CarRentalSystemMain {
     public static void main(String[] args) {
         CarBookingSystem carBookingSystem = CarBookingSystem.getInstance();

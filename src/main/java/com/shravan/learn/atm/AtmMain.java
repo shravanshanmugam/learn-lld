@@ -1,5 +1,25 @@
 package com.shravan.learn.atm;
 
+// AtmSystem -> BankingService, CashDispenser
+// checkBalance(accountNumber)
+// withdrawCash(accountNumber, amount)
+// depositCash(accountNumber, account)
+
+// BankingService -> map Accounts
+// createAccount(accountNumber, balance)
+// processTransaction(Transaction)
+
+// Account -> accountNumber, balance
+// debit(amount), credit(amount)
+
+// Transaction -> transactionId, Account, amount, execute()
+// WithdrawalTransaction, DepositTransaction
+
+// CashDispenser -> cashAvailable
+// dispenseCash(amount)
+
+// Card -> cardNumber, pin
+
 public class AtmMain {
     public static void main(String[] args) {
         BankingService bankingService = new BankingService();
