@@ -4,15 +4,17 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.concurrent.atomic.AtomicInteger;
 
-// AirlineManagement -> Flights, FlightSearch(Flights), BookingManager,
+// AirlineManagement -> list Flights, FlightSearch(Flights), BookingManager,
 //                      addFlight, searchFlights, bookFlight, cancelBooking
 
 // Flight -> flightNumber, source, destination, departureTime (LocalDateTime), arrivalTime (LocalDateTime), Seats
 // FlightSearch -> Flights, search(source, destination, departureDate (LocalDate))
 
-// Booking -> bookingNumber, Flight, Passenger, Seat, price, BookingStatus
+// BookingManager -> map Bookings
+// createBooking, cancelBooking
+// Booking -> bookingNumber, Flight, Passenger, Seat, price, BookingStatus,
+// cancel()
 // BookingStatus -> CONFIRMED, CANCELLED, PENDING, EXPIRED
-// BookingManager -> Bookings, createBooking, cancelBooking
 
 // Seat -> seatNumber, SeatType, SeatStatus
 // SeatType -> ECONOMY, BUSINESS, FIRST_CLASS

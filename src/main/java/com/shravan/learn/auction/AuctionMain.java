@@ -3,16 +3,21 @@ package com.shravan.learn.auction;
 import java.util.Timer;
 import java.util.TimerTask;
 
-// AuctionSystem -> Users, Listings, user Notifications
-//                  searchListing, createListing(Listing) [startAuctionTimer],
-//                  placeBid(Listing, Bid), notify(Bidders)
+// AuctionSystem -> map Users, map Listings, user Notifications
+// searchListing()
+// createListing(Listing) -> startAuctionTimer()
+// placeBid(Listing, Bid)
+// notify(Bidders)
 
 // User -> name, email, pwd
 // Notification -> recipient User, content, NotificationType, timestamp
 
 // Listing -> name, description, Category, createdAt, startingPrice, auctionDuration, owner User,
-//            Bids, highest Bidder (winner), AuctionStatus
-//            placeBid(Bid), closeAuction(), notifyBidders()
+
+// Bids, highest Bidder (winner), AuctionStatus
+// placeBid(Bid) -> compare with current highest Bid and update highest Bidder
+// closeAuction()
+// notifyBidders()
 
 // Bid -> User, amount, timestamp
 // AuctionStatus -> ACTIVE, CLOSED

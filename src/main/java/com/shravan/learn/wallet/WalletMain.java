@@ -2,8 +2,13 @@ package com.shravan.learn.wallet;
 
 import java.math.BigDecimal;
 
-// WalletSystem -> Users, Accounts, PaymentMethods,
-//                 createUser, getUser, createAccount, getAccount, addPaymentMethod, getPaymentMethod
+// WalletSystem -> map Users, map Accounts, map PaymentMethods,
+// createUser, getUser, createAccount, getAccount, addPaymentMethod, getPaymentMethod
+// transferFunds(source Account, destination Account, amount, Currency)
+// -> convert amount to source Account Currency and withdraw,
+// -> convert amount to destination Account Currency and deposit
+// -> add Transaction to both source and destination Account
+
 // User -> name, email, password, Accounts,
 // Account -> User, accountNumber, Currency, balance, Transactions, deposit, withdraw, addTransaction
 // Transaction -> source Account, destination Account, Currency, amount, timestamp
