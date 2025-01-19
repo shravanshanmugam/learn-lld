@@ -11,12 +11,12 @@ import java.util.Map;
 public class Row {
     private final Integer rowId;
     @Setter
-    private Map<Column, Object> values;
+    private Map<String, Object> values;
     private final LocalDateTime createdAt;
     @Setter
     private LocalDateTime updatedAt;
 
-    public Row(Integer rowId, Map<Column, Object> values) {
+    public Row(Integer rowId, Map<String, Object> values) {
         this.rowId = rowId;
         this.values = values;
         createdAt = LocalDateTime.now();

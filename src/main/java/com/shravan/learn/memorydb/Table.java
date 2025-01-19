@@ -30,16 +30,15 @@ public class Table {
         }
     }
 
-    public Row insertRecord(Map<Column, Object> values) {
+    public Row insertRecord(Map<String, Object> values) {
         if (!validate(values)) return null;
         Integer rowId = getAutoIncrementId();
-        Map<Column, Object> columnData = new HashMap<>(values);
-        Row row = new Row(rowId, columnData);
+        Row row = new Row(rowId, values);
         rows.put(rowId, row);
         System.out.println("inserted " + rowId);
         return row;
     }
-    public Row updateRecord(Integer rowId, Map<Column, Object> values) {
+    public Row updateRecord(Integer rowId, Map<String, Object> values) {
         if (!rows.containsKey(rowId)) {
             System.out.println(rowId + " row does not exist");
             return null;
@@ -69,12 +68,7 @@ public class Table {
         System.out.println(tableName);
         for (Integer rowId : rows.keySet()) {
             Row row = rows.get(rowId);
-            Map<Column, Object> values = row.getValues();
-            Map<String, Object> columnData = new HashMap<>();
-            for (Map.Entry<Column, Object> entry : values.entrySet()) {
-                columnData.put(entry.getKey().getColumnName(), entry.getValue());
-            }
-            System.out.println(rowId + "=" + columnData);
+            System.out.println(rowId + "=" + row.getValues());
         }
     }
 
@@ -82,16 +76,17 @@ public class Table {
         return this.autoIncrementId++;
     }
 
-    private boolean validate(Map<Column, Object> values) {
-        for (Column column : values.keySet()) {
-            String columnName = column.getColumnName();
+    private boolean validate(Map<String, Object> values) {
+        for (Map.Entry<String, Object> entry : values.entrySet()) {
+            String columnName = entry.getKey();
             // check column exists
             if (!schema.containsKey(columnName)) {
                 System.out.println(tableName + " does not contain column " + columnName);
                 return false;
             }
+            Column column = schema.get(columnName);
             // check data type
-            Object o = values.get(column);
+            Object o = entry.getValue();
             ColumnType columnType = column.getColumnType();
             ColumnType actualType = getColumnType(o);
             if (!columnType.equals(actualType)) {
@@ -104,7 +99,7 @@ public class Table {
             Column column = entry.getValue();
             // check nullable
             boolean nullable = column.isNullable();
-            if (!nullable && values.get(column) == null) {
+            if (!nullable && values.get(column.getColumnName()) == null) {
                 System.out.println(column.getColumnName() + " is not nullable");
                 return false;
             }
