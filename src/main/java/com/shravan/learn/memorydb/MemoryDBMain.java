@@ -60,7 +60,17 @@ public class MemoryDBMain {
         row6.put("lastName", "Blue");
         row6.put("phone", 8176238);
         users.insertRecord(row6);
+        System.out.println("--");
         users.print();
         firstNameIndex.print();
+        System.out.println("--");
+        List<Row> search1 = firstNameIndex.searchFrom("");
+        System.out.println("searchFrom '' = " + search1);
+
+        List<Row> search2 = firstNameIndex.searchFrom("Alice");
+        System.out.println("searchFrom Alice = " + search2);
+
+        List<Row> search3 = firstNameIndex.searchFrom("John");
+        System.out.println("searchFrom John = " + search3);
     }
 }

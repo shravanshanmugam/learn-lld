@@ -2,21 +2,19 @@ package com.shravan.learn.memorydb;
 
 import lombok.Getter;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Getter
 public class Index {
     private final String indexName;
     private final String columnName;
-    private final Map<String, List<Row>> indexValues;
+    private final TreeMap<String, List<Row>> indexValues;
 
     public Index(String indexName, String columnName, Map<Integer, Row> rows) {
         this.indexName = indexName;
         this.columnName = columnName;
-        indexValues = new HashMap<>();
+        indexValues = new TreeMap<>();
         populateIndex(rows);
     }
 
@@ -38,5 +36,15 @@ public class Index {
         for (Map.Entry<String, List<Row>> entry : indexValues.entrySet()) {
             System.out.println(entry.getKey() + " " + entry.getValue());
         }
+    }
+
+    public List<Row> searchFrom(String value) {
+        String next = indexValues.higherKey(value);
+        if (next == null) return new ArrayList<>();
+        SortedMap<String, List<Row>> alice = indexValues.tailMap(next);
+        List<Row> rows = alice.values().stream()
+                .flatMap(List::stream)
+                .collect(Collectors.toList());
+        return rows;
     }
 }
