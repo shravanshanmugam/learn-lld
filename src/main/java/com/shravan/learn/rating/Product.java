@@ -3,33 +3,35 @@ package com.shravan.learn.rating;
 import lombok.Getter;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Getter
 public class Product {
     private final String productId;
     private final String name;
-    private List<Rating> ratings;
-    private Map<RatingNumber, Integer> count;
-    private int ratingCount;
-    private int reviewCount;
+    private final CopyOnWriteArrayList<Rating> ratings;
+    private final ConcurrentHashMap<RatingNumber, Integer> count;
+    private final AtomicInteger ratingCount;
+    private final AtomicInteger reviewCount;
 
     public Product(String productId, String name) {
         this.productId = productId;
         this.name = name;
-        ratings = new ArrayList<>();
-        count = new HashMap<>();
-        ratingCount = 0;
-        reviewCount = 0;
+        ratings = new CopyOnWriteArrayList<>();
+        count = new ConcurrentHashMap<>();
+        ratingCount = new AtomicInteger(0);
+        reviewCount = new AtomicInteger(0);
     }
 
-    public synchronized Rating rate(RatingNumber ratingNumber, String title, String review, User user) {
+    public Rating rate(RatingNumber ratingNumber, String title, String review, User user) {
         Rating rating = new Rating(ratingNumber, title, review, user);
         ratings.add(rating);
-        Integer c = count.getOrDefault(ratingNumber, 0);
-        count.put(ratingNumber, c + 1);
-        ratingCount++;
+        count.compute(ratingNumber,  (k, v) -> (v == null ? 1 : v + 1));
+        ratingCount.incrementAndGet();
         if (review != null && review.length() > 10) {
-            reviewCount++;
+            reviewCount.incrementAndGet();
         }
         return rating;
     }
