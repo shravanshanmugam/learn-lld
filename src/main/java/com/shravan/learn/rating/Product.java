@@ -12,7 +12,7 @@ public class Product {
     private final String productId;
     private final String name;
     private final CopyOnWriteArrayList<Rating> ratings;
-    private final ConcurrentHashMap<RatingNumber, Integer> count;
+    private final ConcurrentHashMap<RatingNumber, AtomicInteger> count;
     private final AtomicInteger ratingCount;
     private final AtomicInteger reviewCount;
 
@@ -28,7 +28,7 @@ public class Product {
     public Rating rate(RatingNumber ratingNumber, String title, String review, User user) {
         Rating rating = new Rating(ratingNumber, title, review, user);
         ratings.add(rating);
-        count.compute(ratingNumber,  (k, v) -> (v == null ? 1 : v + 1));
+        count.computeIfAbsent(ratingNumber,  k -> new AtomicInteger(0)).incrementAndGet();
         ratingCount.incrementAndGet();
         if (review != null && review.length() > 10) {
             reviewCount.incrementAndGet();
