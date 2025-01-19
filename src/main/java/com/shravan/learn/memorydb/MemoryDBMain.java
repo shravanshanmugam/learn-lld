@@ -50,5 +50,17 @@ public class MemoryDBMain {
         users.insertRecord(row5);
         System.out.println("--");
         users.print();
+
+        users.createIndex("firstName_index", "firstName");
+        Index firstNameIndex = users.getIndexes().get("firstName_index");
+        firstNameIndex.print();
+
+        Map<String, Object> row6 = new HashMap<>();
+        row6.put("firstName", "Alice");
+        row6.put("lastName", "Blue");
+        row6.put("phone", 8176238);
+        users.insertRecord(row6);
+        users.print();
+        firstNameIndex.print();
     }
 }

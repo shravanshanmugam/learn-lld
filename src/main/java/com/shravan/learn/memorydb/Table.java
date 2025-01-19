@@ -14,6 +14,7 @@ public class Table {
     private final Map<String, Column> schema;
     private final Map<Integer, Row> rows;
     private final LocalDateTime createdAt;
+    private final Map<String, Index> indexes;
 
     public Table(String tableName, List<Column> schema) {
         this.tableName = tableName;
@@ -21,6 +22,7 @@ public class Table {
         autoIncrementId = 1;
         rows = new HashMap<>();
         createdAt = LocalDateTime.now();
+        indexes = new HashMap<>();
         populateSchema(schema);
     }
 
@@ -30,12 +32,26 @@ public class Table {
         }
     }
 
+    public void createIndex(String indexName, String columnName) {
+        if (indexes.containsKey(indexName)) {
+            System.out.println(indexName + " index already exists");
+        } else {
+            Index index = new Index(indexName, columnName, rows);
+            indexes.put(indexName, index);
+        }
+    }
+
     public Row insertRecord(Map<String, Object> values) {
         if (!validate(values)) return null;
         Integer rowId = getAutoIncrementId();
         Row row = new Row(rowId, values);
         rows.put(rowId, row);
         System.out.println("inserted " + rowId);
+        if (!indexes.isEmpty()) {
+            for (Index index : indexes.values()) {
+                index.insertRecord(row);
+            }
+        }
         return row;
     }
     public Row updateRecord(Integer rowId, Map<String, Object> values) {
@@ -68,7 +84,7 @@ public class Table {
         System.out.println(tableName);
         for (Integer rowId : rows.keySet()) {
             Row row = rows.get(rowId);
-            System.out.println(rowId + "=" + row.getValues());
+            System.out.println(rowId + "=" + row);
         }
     }
 
