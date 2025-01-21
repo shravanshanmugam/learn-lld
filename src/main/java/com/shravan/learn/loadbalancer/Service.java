@@ -3,6 +3,7 @@ package com.shravan.learn.loadbalancer;
 import com.shravan.learn.loadbalancer.client.Client;
 import com.shravan.learn.loadbalancer.client.HttpClient;
 import com.shravan.learn.loadbalancer.routing.RandomStrategy;
+import com.shravan.learn.loadbalancer.routing.RoundRobinStrategy;
 import com.shravan.learn.loadbalancer.routing.RoutingStrategy;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,7 +25,7 @@ public class Service {
         this.name = name;
         this.path = path;
         this.servers = new ArrayList<>();
-        routingStrategy = new RandomStrategy();
+        routingStrategy = new RoundRobinStrategy();
         client = new HttpClient();
     }
 }

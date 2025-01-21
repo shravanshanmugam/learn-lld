@@ -12,7 +12,7 @@ public class RandomStrategy implements RoutingStrategy {
     @Override
     public Server getServer(List<Server> servers, Request request) {
         Server server = servers.get(random.nextInt(servers.size()));
-        System.out.println("selecting by random server " + server);
+//        System.out.println("selecting by random server " + server);
         return server;
     }
 }

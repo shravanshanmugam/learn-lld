@@ -16,9 +16,27 @@ public class LoadBalancerMain {
         loadBalancer.addServer("/users", new Server("10.0.0.2"));
         loadBalancer.addServer("/users", new Server("10.0.0.3"));
 
-        loadBalancer.route(new Request("/users", "content1"));
-        loadBalancer.route(new Request("/users", "content2"));
-        loadBalancer.route(new Request("/users", "content3"));
-        loadBalancer.route(new Request("/users", "content4"));
+        loadBalancer.addService("transactions", "/transactions");
+        loadBalancer.addServer("/transactions", new Server("10.0.1.1"));
+        loadBalancer.addServer("/transactions", new Server("10.0.1.2"));
+        loadBalancer.addServer("/transactions", new Server("10.0.1.3"));
+        loadBalancer.addServer("/transactions", new Server("10.0.1.4"));
+        loadBalancer.addServer("/transactions", new Server("10.0.1.5"));
+
+
+        loadBalancer.route(new Request("/users", "user content1"));
+        loadBalancer.route(new Request("/transactions", "transaction content1"));
+        loadBalancer.route(new Request("/transactions", "transaction content2"));
+        loadBalancer.route(new Request("/transactions", "transaction content7"));
+        loadBalancer.route(new Request("/users", "user content2"));
+        loadBalancer.route(new Request("/transactions", "transaction content8"));
+        loadBalancer.route(new Request("/users", "user content3"));
+        loadBalancer.route(new Request("/transactions", "transaction content3"));
+        loadBalancer.route(new Request("/transactions", "transaction content4"));
+        loadBalancer.route(new Request("/users", "user content4"));
+        loadBalancer.route(new Request("/users", "user content5"));
+        loadBalancer.route(new Request("/transactions", "transaction content5"));
+        loadBalancer.route(new Request("/transactions", "transaction content6"));
+
     }
 }

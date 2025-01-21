@@ -14,7 +14,7 @@ public class RoundRobinStrategy implements RoutingStrategy {
     public Server getServer(List<Server> servers, Request request) {
         Server server = servers.get(currentIndex);
         currentIndex = (currentIndex + 1) % servers.size();
-        System.out.println("selecting by round robin server " + server);
+//        System.out.println("selecting by round robin server " + server);
         return server;
     }
 }
