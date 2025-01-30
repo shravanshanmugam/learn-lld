@@ -1,15 +1,17 @@
 package com.shravan.learn.scheduler;
 
 import java.util.Comparator;
+import java.util.Optional;
 import java.util.PriorityQueue;
+import java.util.concurrent.PriorityBlockingQueue;
 
 public class TaskSchedulerQueue {
-    private final PriorityQueue<Task> pq;
+    private final PriorityBlockingQueue<ScheduledTask> pq;
 
     public TaskSchedulerQueue() {
-        pq = new PriorityQueue<>(new Comparator<Task>() {
+        pq = new PriorityBlockingQueue<>(10, new Comparator<ScheduledTask>() {
             @Override
-            public int compare(Task o1, Task o2) {
+            public int compare(ScheduledTask o1, ScheduledTask o2) {
                 if (o1.getNextExecutionTime() < o2.getNextExecutionTime()) {
                     return -1;
                 } else if (o1.getNextExecutionTime() == o2.getNextExecutionTime()) {
@@ -21,28 +23,31 @@ public class TaskSchedulerQueue {
         });
     }
 
-    public synchronized boolean isEmpty() {
+    public boolean isEmpty() {
         return pq.isEmpty();
     }
 
-    public synchronized Task peek() {
+    public ScheduledTask peek() {
         return pq.peek();
     }
 
-    public synchronized Task poll() {
+    public ScheduledTask poll() {
         return pq.poll();
     }
 
-    public synchronized void add(Task task) {
+    public void add(ScheduledTask task) {
         pq.add(task);
     }
 
-    public synchronized void remove(Task task) {
+    public void remove(ScheduledTask task) {
         pq.remove(task);
     }
 
-    public synchronized void changePriority(Task task) {
-        pq.remove(task);
-        pq.add(task);
+    public void changePriority(ScheduledTask task, int priority) {
+        Optional<ScheduledTask> first = pq.stream().filter(t -> t.getId() == task.getId()).findFirst();
+        ScheduledTask scheduledTask = first.get();
+        pq.remove(scheduledTask);
+        scheduledTask.setPriority(priority);
+        pq.add(scheduledTask);
     }
 }

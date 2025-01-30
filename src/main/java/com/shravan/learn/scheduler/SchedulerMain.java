@@ -18,49 +18,28 @@ public class SchedulerMain
 
     // API to reschedule, change priority, change parallelism, completion events
     public static void main( String[] args ) throws InterruptedException {
-        TaskScheduler taskScheduler = new TaskScheduler(2);
+        TaskScheduler taskScheduler = new TaskScheduler(3);
         Date now = new Date();
-        long next = now.getTime() + 5 * 1000;
-        Date fixedDate = new Date(next);
-        taskScheduler.scheduleFixedDate("task1", TaskType.READ, 1, ScheduleType.FIXED_DATE, fixedDate, new TaskEventHandler() {
+        EventHandler eventHandler = new EventHandler() {
             @Override
             public void onStart() {
-                System.out.println("started task1");
+//                System.out.println("started");
             }
 
             @Override
             public void onEnd() {
-                System.out.println("ended task1");
+//                System.out.println("ended");
             }
-        });
-        Task task2 = taskScheduler.scheduleRecurring("task2", TaskType.READ, 10, ScheduleType.RECURRING, now, 2000, new TaskEventHandler() {
-            @Override
-            public void onStart() {
-                System.out.println("started task2");
-            }
-
-            @Override
-            public void onEnd() {
-                System.out.println("ended task2");
-            }
-        });
-        Task task3 = taskScheduler.scheduleRecurring("task3", TaskType.READ, 5, ScheduleType.RECURRING, now, 2000, new TaskEventHandler() {
-            @Override
-            public void onStart() {
-                System.out.println("started task3");
-            }
-
-            @Override
-            public void onEnd() {
-                System.out.println("ended task3");
-            }
-        });
+        };
+        ScheduledTask task1 = taskScheduler.schedule(new OneTimeTask(1,  eventHandler, now.getTime()));
+        ScheduledTask task2 = taskScheduler.schedule(new RecurringTask(10, eventHandler, now.getTime(), 2000));
+        ScheduledTask task3 = taskScheduler.schedule(new RecurringTask(5, eventHandler, now.getTime(), 2000));
         Thread.sleep(5000);
         System.out.println("changing priority of task2");
-        taskScheduler.changePriority(task2.getTaskId(), 1);
+        taskScheduler.changePriority(task2, 1);
         Thread.sleep(5000);
         System.out.println("cancel task2");
-        taskScheduler.cancel(task2.getTaskId());
+        taskScheduler.cancel(task2);
         Thread.sleep(5000);
         System.out.println("change parallelism");
         taskScheduler.changeParallelism(1);
