@@ -1,13 +1,26 @@
 package com.shravan.learn.filesystem;
 
-import java.util.Collection;
+import java.util.List;
 
 public interface FileSystem {
-    void add(FileSystem fs);
+    default void add(FileSystem fs) {
+    }
+
     void ls();
+
     boolean isFile();
-    Collection<FileSystem> getChildren();
-    boolean contains(String path);
-    FileSystem get(String path);
+
+    default List<FileSystem> getChildren() {
+        return null;
+    }
+
+    default boolean contains(String path) {
+        return false;
+    }
+
+    default FileSystem get(String path) {
+        return null;
+    }
+
     String getName();
 }
